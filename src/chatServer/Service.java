@@ -4,6 +4,8 @@ import chatProtocol.User;
 import chatProtocol.IService;
 import java.util.HashMap;
 import java.util.Map;
+import chatServer.data.UsuarioDao;
+import java.util.List;
 
 public class Service implements IService{
     private static IService theInstance;
@@ -14,14 +16,34 @@ public class Service implements IService{
         return theInstance;
     }
     
+    private UsuarioDao usuarioDao;
     Server srv;
     Map<String,User> users;
 
     public Service() {        
-        users =  new HashMap();
+        usuarioDao = new UsuarioDao();
+        users = usuarioDao.findAll();
+       // users =  new HashMap();
         users.put("jperez", new User("jperez","111","Juan"));
         users.put("mreyes", new User("mreyes","222","Maria"));
-        users.put("parias", new User("parias","333","Pedro"));                
+       // users.put("parias", new User("parias","333","Pedro"));             
+    }
+    
+      public User get(User o) throws Exception{
+        return usuarioDao.read(o.getId());
+    }  
+      
+     public void add(User o)throws Exception{
+        usuarioDao.create(o);
+    }
+
+    public void update(User o)throws Exception{
+        usuarioDao.update(o);
+        User stored=this.get(o);
+    }
+    
+    public List<User> search(User o){
+        return usuarioDao.findByNombre(o); 
     }
     
     public void setSever(Server srv){
