@@ -55,9 +55,11 @@ public class Server {
         }
     }
     
-    public void deliver(String message){
+    public void deliver(String message, String idEmisor, String idRec){
         for(Worker wk:workers){
-          wk.deliver(message);
+            if (wk.user.getId().equals(idEmisor) ||wk.user.getId().equals(idRec) ) {
+                 wk.deliver(message);             
+            }       
         }        
     } 
     

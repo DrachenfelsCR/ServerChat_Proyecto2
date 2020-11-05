@@ -50,10 +50,12 @@ public class Service implements IService{
         this.srv=srv;
     }
     
-    public void post(String m){
-        srv.deliver(m);
+    public void post(String m, String idEmisor, String idReceptor){
+        srv.deliver(m,idEmisor,idReceptor);
         // TODO if the receiver is not active, store it temporarily
     }
+    
+
     
     public User login(User u) throws Exception{
         User result=users.get(u.getId());
