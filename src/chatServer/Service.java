@@ -23,6 +23,7 @@ public class Service implements IService{
     public Service() {        
         usuarioDao = new UsuarioDao();
         users = usuarioDao.findAll();
+       // users =  new HashMap();
         users.put("jperez", new User("jperez","111","Juan"));
         users.put("mreyes", new User("mreyes","222","Maria"));
        // users.put("parias", new User("parias","333","Pedro"));             
