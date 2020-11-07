@@ -56,11 +56,35 @@ public class Server {
     }
     
     public void deliver(String message, String idEmisor, String idRec){
+        Worker emisor = null;
+        Worker receptor = null;
         for(Worker wk:workers){
-            if (wk.user.getId().equals(idEmisor) ||wk.user.getId().equals(idRec) ) {
-                 wk.deliver(message);             
+            if (wk.user.getId().equals(idEmisor)) {
+                 //wk.deliver(message);    
+                 emisor = wk;
+            }     
+            if (wk.user.getId().equals(idRec)) {
+                receptor = wk;
+            }
+        }
+        if (receptor == null) {
+            message = "Offline";
+            emisor.deliver(message);
+        }
+        else
+        {
+         emisor.deliver(message);   
+         receptor.deliver(message);
+        } 
+    } 
+    
+    public boolean checkStatus(String message, String idEmisor, String idRec){
+        for(Worker wk:workers){
+            if (wk.user.getId().equals(idRec) ) {
+                return true;             
             }       
-        }        
+        }
+        return false;
     } 
     
     public void remove(User u){

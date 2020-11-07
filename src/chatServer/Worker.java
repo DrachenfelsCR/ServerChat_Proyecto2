@@ -61,7 +61,8 @@ public class Worker {
                         paqueteRecibido = (PaqueteDatos) in.readObject();
                         message = paqueteRecibido.getMensaje();
                         //message = (String)in.readObject();
-                        Service.instance().post(user.getId()+": "+message, paqueteRecibido.getIdEmisor(), paqueteRecibido.getIdReceptor() );
+                        Service.instance().post(user.getId()+": "+message, paqueteRecibido.getIdEmisor(), paqueteRecibido.getIdReceptor());
+                        
                     } catch (ClassNotFoundException ex) {}
                     break;                     
                 }

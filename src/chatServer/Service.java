@@ -54,8 +54,10 @@ public class Service implements IService{
         srv.deliver(m,idEmisor,idReceptor);
         // TODO if the receiver is not active, store it temporarily
     }
-    
-
+    public boolean checkStatus(String m, String idEmisor, String idReceptor)
+    {
+       return srv.checkStatus(m,idEmisor,idReceptor);
+    }
     
     public User login(User u) throws Exception{
         User result=users.get(u.getId());
