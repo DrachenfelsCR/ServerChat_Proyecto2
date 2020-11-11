@@ -19,6 +19,7 @@ public class Worker {
         this.skt=skt;
         this.in=in;
         this.out=out;
+        this.user=user;
     }
 
     boolean continuar;    
