@@ -19,7 +19,6 @@ public class Worker {
         this.skt=skt;
         this.in=in;
         this.out=out;
-        this.user=user;
     }
 
     boolean continuar;    
@@ -56,12 +55,15 @@ public class Worker {
                     break;                 
                 case Protocol.POST:
                     String message=null;
+                    String mensajefull=null;
                     try {
                         PaqueteDatos paqueteRecibido;
                         paqueteRecibido = (PaqueteDatos) in.readObject();
                         message = paqueteRecibido.getMensaje();
+                        mensajefull = user.getId()+": "+message;                      
+                        paqueteRecibido.setMensaje(mensajefull);
                         //message = (String)in.readObject();
-                        Service.instance().post(user.getId()+": "+message, paqueteRecibido.getIdEmisor(), paqueteRecibido.getIdReceptor());
+                        Service.instance().post(paqueteRecibido, paqueteRecibido.getIdEmisor(), paqueteRecibido.getIdReceptor());
                         
                     } catch (ClassNotFoundException ex) {}
                     break;                     
@@ -73,7 +75,7 @@ public class Worker {
         }
     }
     
-    public void deliver(String message){
+    public void deliver(PaqueteDatos message){
         try {
             out.writeInt(Protocol.DELIVER);
             out.writeObject(message);

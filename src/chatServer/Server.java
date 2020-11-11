@@ -1,5 +1,6 @@
 package chatServer;
 
+import chatProtocol.PaqueteDatos;
 import chatProtocol.Protocol;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -55,7 +56,7 @@ public class Server {
         }
     }
     
-    public void deliver(String message, String idEmisor, String idRec){
+    public void deliver(PaqueteDatos message, String idEmisor, String idRec){
         Worker emisor = null;
         Worker receptor = null;
         for(Worker wk:workers){
@@ -68,7 +69,7 @@ public class Server {
             }
         }
         if (receptor == null) {
-            message = "Offline";
+            message.setMensaje("Offline");
             emisor.deliver(message);
         }
         else

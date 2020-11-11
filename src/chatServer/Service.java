@@ -2,6 +2,7 @@ package chatServer;
 
 import chatProtocol.User;
 import chatProtocol.IService;
+import chatProtocol.PaqueteDatos;
 import java.util.HashMap;
 import java.util.Map;
 import chatServer.data.UsuarioDao;
@@ -50,7 +51,7 @@ public class Service implements IService{
         this.srv=srv;
     }
     
-    public void post(String m, String idEmisor, String idReceptor){
+    public void post(PaqueteDatos m, String idEmisor, String idReceptor){
         srv.deliver(m,idEmisor,idReceptor);
         // TODO if the receiver is not active, store it temporarily
     }
