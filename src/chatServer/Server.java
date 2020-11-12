@@ -73,6 +73,8 @@ public class Server {
             rcp = Service.instance().get(message.getIdReceptor());
             if (rcp == null) {
                 //No hace nada
+            message.setMensaje("NULLERROR_NOUSER");
+            emisor.deliver(message);
             }
             else
             {
