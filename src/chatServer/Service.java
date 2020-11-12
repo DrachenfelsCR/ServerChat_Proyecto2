@@ -49,6 +49,10 @@ public class Service implements IService{
         return usuarioDao.findByNombre(o); 
     }
     
+     public User get(String id){
+         return users.get(id);
+    }
+    
     public void setSever(Server srv){
         this.srv=srv;
     }

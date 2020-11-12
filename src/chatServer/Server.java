@@ -69,8 +69,16 @@ public class Server {
             }
         }
         if (receptor == null) {
+            User rcp = null;
+            rcp = Service.instance().get(message.getIdReceptor());
+            if (rcp == null) {
+                //No hace nada
+            }
+            else
+            {
             message.setMensaje("Offline");
             emisor.deliver(message);
+            }
         }
         else
         {
