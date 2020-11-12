@@ -9,4 +9,9 @@ create table Usuario (
        Primary Key (id)         
      );
      
-insert into Usuario (id,nombre,clave) values ('davidjqr','david','111');
+insert into Usuario (id,nombre,clave) values ('dqr','David','111');
+insert into Usuario (id,nombre,clave) values ('jperez','Juan','111');
+insert into Usuario (id,nombre,clave) values ('mreyes','Maria','111');
+insert into Usuario (id,nombre,clave) values ('beto','Alberto','111');
+insert into Usuario (id,nombre,clave) values ('tidael','Andres','111');
+
